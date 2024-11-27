@@ -1,43 +1,45 @@
-import 'package:apllikasitest3/main.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+class CounterWidget extends StatefulWidget {
+  @override
+  _CounterWidgetState createState() => _CounterWidgetState();
 }
-Container(
-  color: Colors.grey[300],
-  width: double.infinity,
-  height: double.infinity,
-  child: Column(
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Container(
-        height: 50,
-        width: 50,
-        color: Colors.red,
-      ),
-      Container(
-        height: 50,
-        width: 50,
-        color: Colors.green,
-      ),
-      Container(
-        height: 50,
-        width: 50,
-        color: Colors.blue,
-      ),
-    ],
-  ),
-)
 
+class _CounterWidgetState extends State<CounterWidget> {
+  int _counter = 10;
 
-mixin Colors {
-  static var red;
-  
-  static var green;
-  
-  static var blue;
-  
-  var grey;
+  void _increment() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrement() {
+    setState(() {
+      _counter--;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            OutlinedButton(
+              onPressed: _increment,
+              child: Icon(Icons.add),
+            ),
+            Text("$_counter"),
+            OutlinedButton(
+              onPressed: _decrement,
+              child: Icon(Icons.remove),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
